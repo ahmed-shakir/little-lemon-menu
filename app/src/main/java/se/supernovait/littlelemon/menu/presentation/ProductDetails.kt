@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu
+package se.supernovait.littlelemon.menu.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import se.supernovait.littlelemon.menu.domain.ProductItem
 
 @Composable
 fun ProductDetails(productItem: ProductItem) {

@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu
+package se.supernovait.littlelemon.menu.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -16,14 +16,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import se.supernovait.littlelemon.menu.domain.ProductItem
+import se.supernovait.littlelemon.menu.domain.Products
 
 @Composable
-fun ProductsGrid(products: Products) {
+fun ProductsGrid(products: Products, startProductActivity: (ProductItem) -> Unit) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(count = 2),
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(
             items = products.items,
@@ -37,7 +39,7 @@ fun ProductsGrid(products: Products) {
                         contentDescription = productItem.title,
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.clickable {
-                            //TODO start ProductActivity and pass the productItem details
+                            startProductActivity(productItem)
                         }
                     )
                     Text(text = productItem.title)

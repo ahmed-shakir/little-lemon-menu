@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu
+package se.supernovait.littlelemon.menu.domain
 
 class SortHelper {
 
@@ -13,5 +13,4 @@ class SortHelper {
     private fun List<ProductItem>.sortAlphabetically(): List<ProductItem> {
         return sortedBy { it.title }
     }
-
 }

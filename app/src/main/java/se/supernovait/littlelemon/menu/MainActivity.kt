@@ -1,5 +1,6 @@
 package se.supernovait.littlelemon.menu
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -18,11 +19,20 @@ import androidx.core.view.MenuCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import se.supernovait.littlelemon.menu.data.getProducts
+import se.supernovait.littlelemon.menu.domain.FilterHelper
+import se.supernovait.littlelemon.menu.domain.FilterType
+import se.supernovait.littlelemon.menu.domain.ProductItem
+import se.supernovait.littlelemon.menu.domain.Products
+import se.supernovait.littlelemon.menu.domain.SortHelper
+import se.supernovait.littlelemon.menu.domain.SortType
+import se.supernovait.littlelemon.menu.presentation.ProductsGrid
 import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
 class MainActivity : ComponentActivity() {
     private val products = getProducts()
     private val productsState: MutableStateFlow<Products> = MutableStateFlow(Products(products))
+
+    // TODO: Task 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +51,13 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun InitUI() {
         val products by productsState.collectAsState()
-        ProductsGrid(products = products)
+        ProductsGrid(products = products, this::startProductActivity)
     }
 
     private fun startProductActivity(productItem: ProductItem) {
-        //TODO instantiate intent and pass extra parameter from product
+        val intent = Intent(this, ProductActivity::class.java)
+        intent.putExtra("data", productItem)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

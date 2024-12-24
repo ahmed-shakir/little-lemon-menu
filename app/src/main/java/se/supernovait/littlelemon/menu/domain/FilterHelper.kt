@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu
+package se.supernovait.littlelemon.menu.domain
 
 class FilterHelper {//TODO create a FilterHelperTest and write a unit test for filterProducts
 
