@@ -1,4 +1,6 @@
-package se.supernovait.littlelemon.menu.domain
+package se.supernovait.littlelemon.menu.domain.sort
+
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
 
 object SortHelper {
 

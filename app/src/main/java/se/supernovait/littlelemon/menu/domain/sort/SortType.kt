@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu.domain
+package se.supernovait.littlelemon.menu.domain.sort
 
 sealed class SortType {
     data object Alphabetically : SortType()

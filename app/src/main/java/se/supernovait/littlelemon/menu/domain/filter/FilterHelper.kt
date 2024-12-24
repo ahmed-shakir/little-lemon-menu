@@ -1,4 +1,7 @@
-package se.supernovait.littlelemon.menu.domain
+package se.supernovait.littlelemon.menu.domain.filter
+
+import se.supernovait.littlelemon.menu.domain.product.ProductCategory
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
 
 object FilterHelper {
 

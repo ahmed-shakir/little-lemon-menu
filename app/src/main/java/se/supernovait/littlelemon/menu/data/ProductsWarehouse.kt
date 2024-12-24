@@ -1,8 +1,8 @@
 package se.supernovait.littlelemon.menu.data
 
 import se.supernovait.littlelemon.menu.R
-import se.supernovait.littlelemon.menu.domain.ProductCategory
-import se.supernovait.littlelemon.menu.domain.ProductItem
+import se.supernovait.littlelemon.menu.domain.product.ProductCategory
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
 
 object ProductsWarehouse {
 

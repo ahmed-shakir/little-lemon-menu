@@ -4,8 +4,15 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import se.supernovait.littlelemon.menu.domain.ProductItem
-import se.supernovait.littlelemon.menu.presentation.ProductDetails
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
+import se.supernovait.littlelemon.menu.presentation.product.ProductDetails
+import se.supernovait.littlelemon.menu.presentation.topbar.AppTopBar
+import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
 class ProductActivity : ComponentActivity() {
 
@@ -18,7 +25,16 @@ class ProductActivity : ComponentActivity() {
         } ?: ProductItem(title = "", price = 0.0, category = "", image = 0)
 
         setContent {
-            ProductDetails(productItem)
+            LittleLemonMenuTheme {
+                Scaffold(
+                    topBar = { AppTopBar(showMenu = false) },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    Column(Modifier.padding(innerPadding)) {
+                        ProductDetails(productItem)
+                    }
+                }
+            }
         }
     }
 }

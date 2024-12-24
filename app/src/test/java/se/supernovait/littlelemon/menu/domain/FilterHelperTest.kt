@@ -3,6 +3,10 @@ package se.supernovait.littlelemon.menu.domain
 import org.junit.Assert
 import org.junit.Test
 import se.supernovait.littlelemon.menu.R
+import se.supernovait.littlelemon.menu.domain.filter.FilterHelper
+import se.supernovait.littlelemon.menu.domain.filter.FilterType
+import se.supernovait.littlelemon.menu.domain.product.ProductCategory
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
 
 class FilterHelperTest {
     private val sampleProductsList = mutableListOf(

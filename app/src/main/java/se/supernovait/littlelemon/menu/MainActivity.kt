@@ -2,8 +2,7 @@ package se.supernovait.littlelemon.menu
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -15,17 +14,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.core.view.MenuCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import se.supernovait.littlelemon.menu.data.ProductsWarehouse
-import se.supernovait.littlelemon.menu.domain.FilterHelper
-import se.supernovait.littlelemon.menu.domain.FilterType
-import se.supernovait.littlelemon.menu.domain.ProductItem
-import se.supernovait.littlelemon.menu.domain.Products
-import se.supernovait.littlelemon.menu.domain.SortHelper
-import se.supernovait.littlelemon.menu.domain.SortType
-import se.supernovait.littlelemon.menu.presentation.ProductsGrid
+import se.supernovait.littlelemon.menu.domain.filter.FilterHelper
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
+import se.supernovait.littlelemon.menu.domain.product.Products
+import se.supernovait.littlelemon.menu.domain.sort.SortHelper
+import se.supernovait.littlelemon.menu.presentation.product.ProductsGrid
+import se.supernovait.littlelemon.menu.presentation.topbar.AppTopBar
+import se.supernovait.littlelemon.menu.presentation.topbar.TopBarAction
 import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +35,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LittleLemonMenuTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    topBar = { AppTopBar(onAction = { handleAction(it) }) },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
                     Column(Modifier.padding(innerPadding)) {
                         InitUI()
                     }
@@ -58,37 +59,21 @@ class MainActivity : ComponentActivity() {
         startActivity(intent)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.products_menu, menu)
-        menu?.let {
-            MenuCompat.setGroupDividerEnabled(it, true)
-        }
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.groupId == R.id.sorting) {
-            val type = when (item.itemId) {
-                R.id.sort_a_z -> SortType.Alphabetically
-                R.id.sort_price_asc -> SortType.PriceAsc
-                R.id.sort_price_desc -> SortType.PriceDesc
-                else -> SortType.Alphabetically
+    private fun handleAction(action: TopBarAction) {
+        when(action) {
+            is TopBarAction.OnSort -> {
+                productsState.update {
+                    Products(SortHelper.sortProducts(action.sortType, products))
+                }
             }
-            productsState.update {
-                Products(SortHelper.sortProducts(type, products))
+            is TopBarAction.OnFilter -> {
+                productsState.update {
+                    Products(FilterHelper.filterProducts(action.filterType, products))
+                }
             }
-        } else if (item.groupId == R.id.filter) {
-            val type = when (item.itemId) {
-                R.id.filter_all -> FilterType.All
-                R.id.filter_drinks -> FilterType.Drinks
-                R.id.filter_food -> FilterType.Food
-                R.id.filter_dessert -> FilterType.Dessert
-                else -> FilterType.All
-            }
-            productsState.update {
-                Products(FilterHelper.filterProducts(type, products))
+            TopBarAction.OnDismiss -> {
+                Log.d("AppTopBar", "TopBar menu dismissed")
             }
         }
-        return true
     }
 }

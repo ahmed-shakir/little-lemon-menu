@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu.domain
+package se.supernovait.littlelemon.menu.domain.product
 
 object ProductCategory {
     const val DRINKS = "Drinks"

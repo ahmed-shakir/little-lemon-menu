@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu.presentation
+package se.supernovait.littlelemon.menu.presentation.product
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
@@ -9,8 +9,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import se.supernovait.littlelemon.menu.domain.ProductItem
+import androidx.compose.ui.unit.sp
+import se.supernovait.littlelemon.menu.domain.product.ProductItem
 
 @Composable
 fun ProductDetails(productItem: ProductItem) {
@@ -23,8 +25,19 @@ fun ProductDetails(productItem: ProductItem) {
             contentDescription = productItem.title,
             modifier = Modifier.size(300.dp)
         )
-        Text(text = productItem.title)
-        Text(text = "Price: $${productItem.price}")
-        Text(text = "Category: ${productItem.category}")
+        Text(
+            text = productItem.title,
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold
+        )
+        Text(
+            text = "$${productItem.price}",
+            fontSize = 40.sp
+        )
+        Text(
+            text = "Category: ${productItem.category}",
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Light
+        )
     }
 }

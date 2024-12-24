@@ -1,4 +1,4 @@
-package se.supernovait.littlelemon.menu.domain
+package se.supernovait.littlelemon.menu.domain.filter
 
 sealed class FilterType {
     data object All : FilterType()
