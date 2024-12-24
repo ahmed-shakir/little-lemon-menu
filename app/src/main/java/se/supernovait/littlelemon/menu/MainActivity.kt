@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.core.view.MenuCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
-import se.supernovait.littlelemon.menu.data.getProducts
+import se.supernovait.littlelemon.menu.data.ProductsWarehouse
 import se.supernovait.littlelemon.menu.domain.FilterHelper
 import se.supernovait.littlelemon.menu.domain.FilterType
 import se.supernovait.littlelemon.menu.domain.ProductItem
@@ -29,7 +29,7 @@ import se.supernovait.littlelemon.menu.presentation.ProductsGrid
 import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
 class MainActivity : ComponentActivity() {
-    private val products = getProducts()
+    private val products = ProductsWarehouse.getProducts()
     private val productsState: MutableStateFlow<Products> = MutableStateFlow(Products(products))
 
     // TODO: Task 1
