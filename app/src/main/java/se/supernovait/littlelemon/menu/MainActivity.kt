@@ -32,8 +32,6 @@ class MainActivity : ComponentActivity() {
     private val products = ProductsWarehouse.getProducts()
     private val productsState: MutableStateFlow<Products> = MutableStateFlow(Products(products))
 
-    // TODO: Task 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -77,12 +75,7 @@ class MainActivity : ComponentActivity() {
                 else -> SortType.Alphabetically
             }
             productsState.update {
-                Products(
-                    SortHelper().sortProducts(
-                        type,
-                        products
-                    )
-                )
+                Products(SortHelper.sortProducts(type, products))
             }
         } else if (item.groupId == R.id.filter) {
             val type = when (item.itemId) {
@@ -93,12 +86,7 @@ class MainActivity : ComponentActivity() {
                 else -> FilterType.All
             }
             productsState.update {
-                Products(
-                    FilterHelper().filterProducts(
-                        type,
-                        products
-                    )
-                )
+                Products(FilterHelper.filterProducts(type, products))
             }
         }
         return true

@@ -1,6 +1,6 @@
 package se.supernovait.littlelemon.menu.domain
 
-class SortHelper {
+object SortHelper {
 
     fun sortProducts(type: SortType, productsList: List<ProductItem>): List<ProductItem> {
         return when (type) {

@@ -1,6 +1,6 @@
 package se.supernovait.littlelemon.menu.domain
 
-class FilterHelper { //TODO create a FilterHelperTest and write a unit test for filterProducts
+object FilterHelper {
 
     fun filterProducts(type: FilterType, productsList: List<ProductItem>): List<ProductItem> {
         return when (type) {
