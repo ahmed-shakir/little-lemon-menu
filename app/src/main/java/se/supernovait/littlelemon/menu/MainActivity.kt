@@ -22,7 +22,7 @@ import se.supernovait.littlelemon.menu.domain.product.ProductItem
 import se.supernovait.littlelemon.menu.domain.product.Products
 import se.supernovait.littlelemon.menu.domain.sort.SortHelper
 import se.supernovait.littlelemon.menu.presentation.product.ProductsGrid
-import se.supernovait.littlelemon.menu.presentation.topbar.AppTopBar
+import se.supernovait.littlelemon.menu.presentation.topbar.TopBar
 import se.supernovait.littlelemon.menu.presentation.topbar.TopBarAction
 import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             LittleLemonMenuTheme {
                 Scaffold(
-                    topBar = { AppTopBar(onAction = { handleAction(it) }) },
+                    topBar = { TopBar(onAction = { handleAction(it) }) },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     Column(Modifier.padding(innerPadding)) {

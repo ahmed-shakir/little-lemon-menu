@@ -21,9 +21,9 @@ import se.supernovait.littlelemon.menu.domain.sort.SortType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppTopBar(
+fun TopBar(
     showMenu: Boolean = true,
-    stateHolder: TopBarMenuStateHolder = rememberTopBarMenuStateHolder(false),
+    state: TopBarMenuState = rememberTopBarMenuState(false),
     onAction: (TopBarAction) -> Unit = { }
 ) {
     CenterAlignedTopAppBar(
@@ -40,17 +40,17 @@ fun AppTopBar(
         ),
         actions = {
             if(showMenu) {
-                IconButton(onClick = { stateHolder.setIsExpanded(!stateHolder.isExpanded) }) {
+                IconButton(onClick = { state.setIsExpanded(!state.isExpanded) }) {
                     Icon(Icons.Default.MoreVert, contentDescription = "More options")
                 }
             }
             ActionDropdownMenu(
-                expanded = stateHolder.isExpanded,
+                expanded = state.isExpanded,
                 onAction = {
                     if(it !is TopBarAction.OnDismiss) {
                         onAction(it)
                     }
-                    stateHolder.setIsExpanded(false)
+                    state.setIsExpanded(false)
                 }
             )
         }

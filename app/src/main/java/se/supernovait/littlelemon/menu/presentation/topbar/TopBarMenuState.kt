@@ -7,7 +7,7 @@ import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 
-class TopBarMenuStateHolder(isExpanded: Boolean) {
+class TopBarMenuState(isExpanded: Boolean) {
     var isExpanded by mutableStateOf(isExpanded)
         private set
 
@@ -17,15 +17,15 @@ class TopBarMenuStateHolder(isExpanded: Boolean) {
 }
 
 @Composable
-fun rememberTopBarMenuStateHolder(isExpanded: Boolean): TopBarMenuStateHolder {
+fun rememberTopBarMenuState(isExpanded: Boolean): TopBarMenuState {
     return rememberSaveable(saver = listSaver(
         save = {
             listOf(it.isExpanded)
         },
         restore = {
-            TopBarMenuStateHolder(it[0])
+            TopBarMenuState(it[0])
         }
     )) {
-        TopBarMenuStateHolder(isExpanded)
+        TopBarMenuState(isExpanded)
     }
 }

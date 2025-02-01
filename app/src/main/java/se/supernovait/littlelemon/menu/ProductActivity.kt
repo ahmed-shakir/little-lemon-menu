@@ -11,7 +11,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import se.supernovait.littlelemon.menu.domain.product.ProductItem
 import se.supernovait.littlelemon.menu.presentation.product.ProductDetails
-import se.supernovait.littlelemon.menu.presentation.topbar.AppTopBar
+import se.supernovait.littlelemon.menu.presentation.topbar.TopBar
 import se.supernovait.littlelemon.menu.ui.theme.LittleLemonMenuTheme
 
 class ProductActivity : ComponentActivity() {
@@ -27,7 +27,7 @@ class ProductActivity : ComponentActivity() {
         setContent {
             LittleLemonMenuTheme {
                 Scaffold(
-                    topBar = { AppTopBar(showMenu = false) },
+                    topBar = { TopBar(showMenu = false) },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
                     Column(Modifier.padding(innerPadding)) {
